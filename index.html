@@ -9,111 +9,130 @@
 :root {
   --primary: #2d6a4f;
   --primary-light: #e8f5ee;
-  --primary-mid: #40916c;
   --accent: #f4a261;
   --accent-light: #fff3e8;
   --text: #1a1a2e;
   --text-muted: #6b7280;
   --border: #e5e7eb;
   --bg: #ffffff;
-  --bg2: #f9fafb;
-  --radius: 12px;
+  --bg2: #f4f6f8;
+  --radius: 14px;
   --radius-sm: 8px;
 }
 body { font-family: -apple-system, 'Segoe UI', sans-serif; color: var(--text); background: var(--bg2); min-height: 100vh; }
 
-/* NAV */
-.top-nav { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-.top-nav-inner { max-width: 680px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 52px; padding: 0 16px; }
-.nav-logo { font-size: 17px; font-weight: 800; color: var(--primary); letter-spacing: 1px; }
-.nav-user { display: flex; align-items: center; gap: 8px; }
-.user-chip { font-size: 13px; color: var(--text-muted); background: var(--bg2); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; cursor: pointer; }
-.logout-btn { font-size: 12px; color: var(--text-muted); cursor: pointer; background: none; border: none; }
-
-/* LOGIN */
+/* ── LOGIN ── */
 .login-wrap { max-width: 360px; margin: 60px auto; padding: 0 20px; }
-.login-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px 28px; text-align: center; }
-.login-logo { font-size: 48px; margin-bottom: 12px; }
-.login-title { font-size: 22px; font-weight: 800; color: var(--primary); margin-bottom: 6px; }
-.login-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
-.login-card input { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 15px; margin-bottom: 10px; outline: none; }
+.login-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 36px 28px; text-align: center; box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+.login-logo { font-size: 52px; margin-bottom: 12px; }
+.login-title { font-size: 24px; font-weight: 800; color: var(--primary); margin-bottom: 6px; letter-spacing: 1px; }
+.login-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.6; }
+.login-card input { width: 100%; padding: 13px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 15px; margin-bottom: 10px; outline: none; font-family: inherit; }
 .login-card input:focus { border-color: var(--primary); }
-.btn-primary { width: 100%; padding: 13px; background: var(--primary); color: white; border: none; border-radius: var(--radius-sm); font-size: 15px; font-weight: 700; cursor: pointer; }
+.btn-primary { width: 100%; padding: 14px; background: var(--primary); color: white; border: none; border-radius: var(--radius-sm); font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; }
 .btn-primary:active { opacity: 0.85; }
-.login-hint { font-size: 12px; color: var(--text-muted); margin-top: 16px; line-height: 1.6; }
+.login-hint { font-size: 12px; color: var(--text-muted); margin-top: 18px; line-height: 1.7; }
 
-/* CATEGORY TABS */
-.cat-tabs { background: var(--bg); border-bottom: 1px solid var(--border); overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
-.cat-tabs::-webkit-scrollbar { display: none; }
-.cat-tabs-inner { display: inline-flex; padding: 0 12px; max-width: 100%; }
-.cat-tab { display: inline-block; padding: 12px 14px; font-size: 13px; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; font-weight: 500; }
-.cat-tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 700; }
+/* ── TOP NAV ── */
+.top-nav { background: var(--primary); position: sticky; top: 0; z-index: 200; }
+.top-nav-inner { max-width: 720px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 52px; padding: 0 16px; }
+.nav-logo { font-size: 17px; font-weight: 800; color: white; letter-spacing: 1px; }
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.nav-user-name { font-size: 13px; color: rgba(255,255,255,0.85); }
+.nav-logout { font-size: 12px; color: rgba(255,255,255,0.65); background: none; border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 4px 10px; cursor: pointer; }
 
-/* MAIN */
-.main { max-width: 680px; margin: 0 auto; padding: 16px 12px 100px; }
+/* ── CATEGORY BAR ── */
+.cat-bar { background: var(--bg); border-bottom: 1px solid var(--border); overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.cat-bar::-webkit-scrollbar { display: none; }
+.cat-bar-inner { display: flex; padding: 0 12px; min-width: max-content; }
+.cat-btn { padding: 12px 13px; font-size: 13px; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; font-weight: 500; background: none; border-top: none; border-left: none; border-right: none; font-family: inherit; }
+.cat-btn.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 700; }
 
-/* WRITE BOX */
-.write-box { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 16px; }
-.write-box textarea { width: 100%; border: none; outline: none; font-size: 15px; resize: none; min-height: 60px; font-family: inherit; color: var(--text); background: transparent; }
-.write-box-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
-.write-cat-select { font-size: 13px; border: 1px solid var(--border); border-radius: 20px; padding: 5px 10px; color: var(--text-muted); background: var(--bg2); outline: none; }
-.write-submit { background: var(--primary); color: white; border: none; border-radius: 20px; padding: 7px 18px; font-size: 13px; font-weight: 700; cursor: pointer; }
-.write-submit:active { opacity: 0.85; }
+/* ── LAYOUT ── */
+.layout { max-width: 720px; margin: 0 auto; padding: 16px 12px 40px; display: grid; grid-template-columns: 1fr; gap: 14px; }
 
-/* POST CARD */
-.post-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
-.post-header { display: flex; align-items: center; gap: 10px; padding: 14px 16px 10px; }
-.avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex-shrink: 0; }
-.post-meta { flex: 1; }
+/* ── WRITE CARD ── */
+.write-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.write-card-header { display: flex; align-items: center; gap: 10px; padding: 14px 16px 10px; }
+.write-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex-shrink: 0; }
+.write-placeholder { flex: 1; font-size: 14px; color: var(--text-muted); cursor: pointer; padding: 8px 14px; background: var(--bg2); border-radius: 20px; border: 1px solid var(--border); }
+.write-form { display: none; padding: 0 16px 14px; }
+.write-form.open { display: block; }
+.write-textarea { width: 100%; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 15px; font-family: inherit; resize: none; outline: none; min-height: 80px; margin-bottom: 10px; color: var(--text); }
+.write-textarea:focus { border-color: var(--primary); }
+.write-form-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.write-cat-sel { font-size: 13px; border: 1px solid var(--border); border-radius: 20px; padding: 7px 12px; color: var(--text); background: var(--bg2); outline: none; font-family: inherit; cursor: pointer; }
+.write-img-btn { display: flex; align-items: center; gap: 5px; font-size: 13px; color: var(--text-muted); background: var(--bg2); border: 1px solid var(--border); border-radius: 20px; padding: 7px 12px; cursor: pointer; }
+.write-img-input { display: none; }
+.write-img-preview { margin: 8px 0; border-radius: var(--radius-sm); overflow: hidden; position: relative; }
+.write-img-preview img { width: 100%; max-height: 240px; object-fit: cover; display: block; }
+.write-img-remove { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,0.55); color: white; border: none; border-radius: 50%; width: 26px; height: 26px; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.write-submit-row { display: flex; justify-content: flex-end; gap: 8px; margin-top: 10px; }
+.btn-cancel { background: none; border: 1px solid var(--border); border-radius: 20px; padding: 8px 16px; font-size: 13px; color: var(--text-muted); cursor: pointer; font-family: inherit; }
+.btn-submit { background: var(--primary); color: white; border: none; border-radius: 20px; padding: 8px 20px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; }
+.btn-submit:active { opacity: 0.85; }
+
+/* ── POST CARD ── */
+.post-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.post-head { display: flex; align-items: flex-start; justify-content: space-between; padding: 14px 16px 0; }
+.post-head-left { display: flex; align-items: center; gap: 10px; }
+.post-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; flex-shrink: 0; }
 .post-author { font-size: 14px; font-weight: 700; }
-.post-info { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
-.cat-badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; background: var(--primary-light); color: var(--primary); font-weight: 700; margin-left: 6px; }
-.post-body { padding: 0 16px 14px; font-size: 15px; line-height: 1.65; white-space: pre-wrap; }
-.post-actions { display: flex; align-items: center; gap: 0; border-top: 1px solid var(--border); }
-.action-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px; font-size: 13px; color: var(--text-muted); cursor: pointer; background: none; border: none; border-right: 1px solid var(--border); font-family: inherit; }
-.action-btn:last-child { border-right: none; }
-.action-btn:active { background: var(--bg2); }
-.action-btn.liked { color: #e74c3c; }
+.post-meta-row { display: flex; align-items: center; gap: 6px; margin-top: 2px; }
+.cat-tag { font-size: 11px; background: var(--primary-light); color: var(--primary); padding: 2px 8px; border-radius: 20px; font-weight: 700; }
+.post-time { font-size: 12px; color: var(--text-muted); }
+.post-menu-btn { background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer; padding: 0 4px; line-height: 1; position: relative; }
+.post-dropdown { position: absolute; right: 12px; top: 44px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); box-shadow: 0 4px 16px rgba(0,0,0,0.12); z-index: 50; min-width: 110px; display: none; }
+.post-dropdown.open { display: block; }
+.post-dropdown button { display: block; width: 100%; text-align: left; padding: 11px 16px; font-size: 14px; background: none; border: none; cursor: pointer; font-family: inherit; color: var(--text); }
+.post-dropdown button:hover { background: var(--bg2); }
+.post-dropdown button.danger { color: #dc2626; }
+.post-body { padding: 12px 16px; font-size: 15px; line-height: 1.7; white-space: pre-wrap; word-break: break-word; }
+.post-img { width: 100%; max-height: 360px; object-fit: cover; display: block; }
+.post-actions { display: flex; border-top: 1px solid var(--border); }
+.act-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 11px 8px; font-size: 13px; color: var(--text-muted); cursor: pointer; background: none; border: none; border-right: 1px solid var(--border); font-family: inherit; transition: background 0.15s; }
+.act-btn:last-child { border-right: none; }
+.act-btn:active { background: var(--bg2); }
+.act-btn.liked { color: #e74c3c; font-weight: 700; }
 
-/* COMMENTS */
-.comments-wrap { border-top: 1px solid var(--border); background: var(--bg2); padding: 10px 14px; display: none; }
-.comments-wrap.open { display: block; }
-.comment-item { display: flex; gap: 8px; margin-bottom: 10px; }
-.comment-avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; }
-.comment-body { flex: 1; }
-.comment-author { font-size: 12px; font-weight: 700; margin-bottom: 2px; }
-.comment-text { font-size: 13px; line-height: 1.5; }
-.comment-time { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-.comment-input-row { display: flex; gap: 8px; margin-top: 10px; }
-.comment-input { flex: 1; padding: 8px 12px; border: 1px solid var(--border); border-radius: 20px; font-size: 13px; outline: none; font-family: inherit; background: var(--bg); }
-.comment-input:focus { border-color: var(--primary); }
-.comment-send { background: var(--primary); color: white; border: none; border-radius: 20px; padding: 8px 14px; font-size: 13px; font-weight: 700; cursor: pointer; }
+/* ── EDIT FORM ── */
+.edit-form { display: none; padding: 12px 16px; border-top: 1px solid var(--border); }
+.edit-form.open { display: block; }
+.edit-textarea { width: 100%; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 13px; font-size: 15px; font-family: inherit; resize: none; outline: none; min-height: 80px; color: var(--text); }
+.edit-textarea:focus { border-color: var(--primary); }
+.edit-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px; }
 
-/* EMPTY */
-.empty-state { text-align: center; padding: 48px 20px; color: var(--text-muted); }
-.empty-state div { font-size: 36px; margin-bottom: 10px; }
-.empty-state p { font-size: 14px; }
+/* ── COMMENTS ── */
+.comments-section { display: none; border-top: 1px solid var(--border); background: var(--bg2); padding: 12px 14px 14px; }
+.comments-section.open { display: block; }
+.comment-item { display: flex; gap: 9px; margin-bottom: 12px; }
+.c-avatar { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; }
+.c-body { flex: 1; background: var(--bg); border-radius: var(--radius-sm); padding: 9px 12px; border: 1px solid var(--border); }
+.c-name { font-size: 12px; font-weight: 700; margin-bottom: 3px; }
+.c-text { font-size: 14px; line-height: 1.55; word-break: break-word; }
+.c-time { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+.c-input-row { display: flex; gap: 8px; margin-top: 6px; }
+.c-input { flex: 1; padding: 10px 14px; border: 1px solid var(--border); border-radius: 20px; font-size: 14px; outline: none; font-family: inherit; background: var(--bg); }
+.c-input:focus { border-color: var(--primary); }
+.c-send { background: var(--primary); color: white; border: none; border-radius: 20px; padding: 10px 16px; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.c-send:active { opacity: 0.85; }
 
-/* BOTTOM NAV */
-.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0 env(safe-area-inset-bottom, 8px); z-index: 100; }
-.bn-item { display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; background: none; border: none; padding: 4px 8px; }
-.bn-icon { font-size: 22px; }
-.bn-label { font-size: 10px; color: var(--text-muted); }
-.bn-item.active .bn-label { color: var(--primary); font-weight: 700; }
+/* ── EMPTY / LOADING ── */
+.empty { text-align: center; padding: 56px 20px; color: var(--text-muted); }
+.empty-icon { font-size: 40px; margin-bottom: 12px; }
+.empty p { font-size: 14px; line-height: 1.7; }
+.loading-txt { text-align: center; padding: 40px; color: var(--text-muted); font-size: 14px; }
 
-/* LOADING */
-.loading { text-align: center; padding: 40px; color: var(--text-muted); font-size: 14px; }
-
-/* TOAST */
-.toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: #1a1a2e; color: white; padding: 10px 20px; border-radius: 20px; font-size: 13px; z-index: 999; opacity: 0; transition: opacity 0.3s; pointer-events: none; white-space: nowrap; }
+/* ── TOAST ── */
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #1a1a2e; color: white; padding: 11px 22px; border-radius: 20px; font-size: 13px; z-index: 999; opacity: 0; transition: opacity 0.25s; pointer-events: none; white-space: nowrap; }
 .toast.show { opacity: 1; }
 
-/* Avatar colors */
-.av-green { background: #e8f5ee; color: #2d6a4f; }
-.av-orange { background: #fff3e8; color: #e76f00; }
-.av-blue { background: #e8f0fe; color: #1a56db; }
-.av-pink { background: #fce8f3; color: #c026d3; }
-.av-red { background: #fee8e8; color: #dc2626; }
+/* avatar palette */
+.av0 { background: #e8f5ee; color: #2d6a4f; }
+.av1 { background: #fff3e8; color: #c2560a; }
+.av2 { background: #e8f0fe; color: #1a56db; }
+.av3 { background: #fce8f3; color: #9d174d; }
+.av4 { background: #fef3c7; color: #92400e; }
 </style>
 </head>
 <body>
@@ -128,68 +147,54 @@ body { font-family: -apple-system, 'Segoe UI', sans-serif; color: var(--text); b
       <input type="text" id="login-name" placeholder="이름 입력 (예: 아빠, 엄마, 딸, 아들)" maxlength="10">
       <input type="password" id="login-pw" placeholder="가족 비밀번호">
       <button class="btn-primary" onclick="doLogin()">입장하기</button>
-      <div class="login-hint">💡 처음 오셨으면 이름을 입력하고 입장하세요!</div>
+      <div class="login-hint">처음 오셨으면 이름을 입력하고 입장하세요!</div>
     </div>
   </div>
 </div>
 
-<!-- MAIN APP -->
+<!-- APP -->
 <div id="app" style="display:none">
   <div class="top-nav">
     <div class="top-nav-inner">
-      <div class="nav-logo">🏠 YHDS</div>
-      <div class="nav-user">
-        <div class="user-chip" id="user-chip">👤 이름</div>
-        <button class="logout-btn" onclick="doLogout()">로그아웃</button>
+      <div class="nav-logo">🏠 YHDS FAMILY</div>
+      <div class="nav-right">
+        <span class="nav-user-name" id="nav-uname"></span>
+        <button class="nav-logout" onclick="doLogout()">로그아웃</button>
       </div>
     </div>
   </div>
 
-  <div class="cat-tabs">
-    <div class="cat-tabs-inner">
-      <div class="cat-tab active" onclick="selectCat('전체')">🏠 전체</div>
-      <div class="cat-tab" onclick="selectCat('소통')">💬 소통</div>
-      <div class="cat-tab" onclick="selectCat('요리')">🍳 요리</div>
-      <div class="cat-tab" onclick="selectCat('여행')">✈️ 여행</div>
-      <div class="cat-tab" onclick="selectCat('영어')">📖 영어</div>
-      <div class="cat-tab" onclick="selectCat('일정')">📅 일정</div>
-      <div class="cat-tab" onclick="selectCat('기념일')">🎂 기념일</div>
-      <div class="cat-tab" onclick="selectCat('챌린지')">🏆 챌린지</div>
-      <div class="cat-tab" onclick="selectCat('독서')">📚 독서</div>
-      <div class="cat-tab" onclick="selectCat('감사일기')">🙏 감사일기</div>
-    </div>
+  <div class="cat-bar">
+    <div class="cat-bar-inner" id="cat-bar"></div>
   </div>
 
-  <div class="main">
+  <div class="layout">
     <!-- WRITE -->
-    <div class="write-box">
-      <textarea id="write-text" placeholder="가족에게 하고 싶은 말을 남겨보세요 😊"></textarea>
-      <div class="write-box-footer">
-        <select class="write-cat-select" id="write-cat">
-          <option>소통</option>
-          <option>요리</option>
-          <option>여행</option>
-          <option>영어</option>
-          <option>일정</option>
-          <option>기념일</option>
-          <option>챌린지</option>
-          <option>독서</option>
-          <option>감사일기</option>
-        </select>
-        <button class="write-submit" onclick="submitPost()">올리기 ✈️</button>
+    <div class="write-card">
+      <div class="write-card-header">
+        <div class="write-avatar" id="write-av"></div>
+        <div class="write-placeholder" onclick="openWriteForm()">가족에게 하고 싶은 말을 남겨보세요 😊</div>
+      </div>
+      <div class="write-form" id="write-form">
+
+        <textarea class="write-textarea" id="write-text" placeholder="내용을 입력하세요..." rows="3"></textarea>
+        <div class="write-form-row">
+          <select class="write-cat-sel" id="write-cat">
+            <option>소통</option><option>요리</option><option>여행</option>
+            <option>영어</option><option>일정</option><option>기념일</option>
+            <option>챌린지</option><option>독서</option><option>감사일기</option>
+          </select>
+
+        </div>
+        <div class="write-submit-row">
+          <button class="btn-cancel" onclick="closeWriteForm()">취소</button>
+          <button class="btn-submit" onclick="submitPost()">올리기 ✈️</button>
+        </div>
       </div>
     </div>
 
     <!-- POSTS -->
-    <div id="posts-list"><div class="loading">불러오는 중... ⏳</div></div>
-  </div>
-
-  <div class="bottom-nav">
-    <button class="bn-item active" onclick="selectCat('전체')"><div class="bn-icon">🏠</div><div class="bn-label">전체</div></button>
-    <button class="bn-item" onclick="selectCat('소통')"><div class="bn-icon">💬</div><div class="bn-label">소통</div></button>
-    <button class="bn-item" onclick="selectCat('요리')"><div class="bn-icon">🍳</div><div class="bn-label">요리</div></button>
-    <button class="bn-item" onclick="selectCat('영어')"><div class="bn-icon">📖</div><div class="bn-label">영어</div></button>
-    <button class="bn-item" onclick="selectCat('감사일기')"><div class="bn-icon">🙏</div><div class="bn-label">감사</div></button>
+    <div id="posts-area"><div class="loading-txt">불러오는 중... ⏳</div></div>
   </div>
 </div>
 
@@ -197,7 +202,8 @@ body { font-family: -apple-system, 'Segoe UI', sans-serif; color: var(--text); b
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, arrayUnion, arrayRemove, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, orderBy, serverTimestamp, arrayUnion, arrayRemove, getDoc } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyABdaB9U87q1wZJYYBsRbSmYHaqrdMhT5w",
@@ -208,206 +214,270 @@ const firebaseConfig = {
   appId: "1:900368479728:web:e507687308781052721935",
   measurementId: "G-ECHZL3V44V"
 };
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+
 const FAMILY_PW = "yhds1029";
+const CATS = ["전체","소통","요리","여행","영어","일정","기념일","챌린지","독서","감사일기"];
+const CAT_ICONS = {"전체":"🏠","소통":"💬","요리":"🍳","여행":"✈️","영어":"📖","일정":"📅","기념일":"🎂","챌린지":"🏆","독서":"📚","감사일기":"🙏"};
+
 let currentUser = null;
 let currentCat = "전체";
 let unsubscribe = null;
 
-const avatarColors = ["av-green","av-orange","av-blue","av-pink","av-red"];
-function getAvatarColor(name) {
-  let h = 0;
-  for(let c of name) h += c.charCodeAt(0);
-  return avatarColors[h % avatarColors.length];
-}
-function getInitial(name) { return name.charAt(0); }
 
+// ── AVATAR ──
+function avClass(name) {
+  let h = 0; for(let c of (name||"?")) h += c.charCodeAt(0);
+  return "av" + (h % 5);
+}
+function avInit(name) { return (name||"?").charAt(0); }
+
+// ── TIME ──
 function timeAgo(ts) {
   if(!ts) return "";
-  const now = Date.now();
-  const t = ts.toMillis ? ts.toMillis() : ts;
-  const diff = Math.floor((now - t) / 1000);
-  if(diff < 60) return "방금";
-  if(diff < 3600) return Math.floor(diff/60) + "분 전";
-  if(diff < 86400) return Math.floor(diff/3600) + "시간 전";
-  return Math.floor(diff/86400) + "일 전";
+  const ms = ts.toMillis ? ts.toMillis() : (ts.seconds ? ts.seconds*1000 : Date.now());
+  const d = Math.floor((Date.now()-ms)/1000);
+  if(d<60) return "방금"; if(d<3600) return Math.floor(d/60)+"분 전";
+  if(d<86400) return Math.floor(d/3600)+"시간 전";
+  return Math.floor(d/86400)+"일 전";
 }
 
-function showToast(msg) {
-  const t = document.getElementById("toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  setTimeout(() => t.classList.remove("show"), 2000);
+// ── TOAST ──
+function toast(msg) {
+  const el = document.getElementById("toast");
+  el.textContent = msg; el.classList.add("show");
+  setTimeout(()=>el.classList.remove("show"), 2200);
 }
 
-// LOGIN
+// ── LOGIN ──
 window.doLogin = function() {
   const name = document.getElementById("login-name").value.trim();
   const pw = document.getElementById("login-pw").value;
-  if(!name) { showToast("이름을 입력해주세요!"); return; }
-  if(pw !== FAMILY_PW) { showToast("비밀번호가 틀렸어요!"); return; }
+  if(!name) { toast("이름을 입력해주세요!"); return; }
+  if(pw !== FAMILY_PW) { toast("비밀번호가 틀렸어요!"); return; }
   currentUser = name;
   localStorage.setItem("yhds_user", name);
   showApp();
 };
-
 window.doLogout = function() {
   localStorage.removeItem("yhds_user");
   currentUser = null;
+  if(unsubscribe) unsubscribe();
   document.getElementById("app").style.display = "none";
   document.getElementById("login-screen").style.display = "block";
 };
-
-document.getElementById("login-pw").addEventListener("keydown", e => {
-  if(e.key === "Enter") window.doLogin();
-});
+document.getElementById("login-pw").addEventListener("keydown", e => { if(e.key==="Enter") window.doLogin(); });
 
 function showApp() {
   document.getElementById("login-screen").style.display = "none";
   document.getElementById("app").style.display = "block";
-  document.getElementById("user-chip").textContent = "👤 " + currentUser;
+  document.getElementById("nav-uname").textContent = "👤 " + currentUser;
+  const wa = document.getElementById("write-av");
+  wa.textContent = avInit(currentUser);
+  wa.className = "write-avatar " + avClass(currentUser);
+  buildCatBar();
   loadPosts();
 }
-
-// Check saved login
 const saved = localStorage.getItem("yhds_user");
 if(saved) { currentUser = saved; showApp(); }
 
-// CATEGORY
+// ── CAT BAR ──
+function buildCatBar() {
+  document.getElementById("cat-bar").innerHTML = CATS.map(c =>
+    `<button class="cat-btn${c===currentCat?' active':''}" onclick="selectCat('${c}')">${CAT_ICONS[c]} ${c}</button>`
+  ).join("");
+}
 window.selectCat = function(cat) {
   currentCat = cat;
-  document.querySelectorAll(".cat-tab").forEach(t => {
-    t.classList.toggle("active", t.textContent.includes(cat) || (cat === "전체" && t.textContent.includes("전체")));
-  });
-  document.querySelectorAll(".bn-item").forEach(t => {
-    t.classList.toggle("active", t.querySelector(".bn-label").textContent === cat || (cat === "전체" && t.querySelector(".bn-label").textContent === "전체"));
-  });
+  buildCatBar();
   loadPosts();
 };
 
-// LOAD POSTS
+// ── WRITE FORM ──
+window.openWriteForm = function() { document.getElementById("write-form").classList.add("open"); document.getElementById("write-text").focus(); };
+window.closeWriteForm = function() {
+  document.getElementById("write-form").classList.remove("open");
+  document.getElementById("write-text").value = "";
+  removePreview();
+};
+
+
+// ── SUBMIT POST ──
+window.submitPost = async function() {
+  const text = document.getElementById("write-text").value.trim();
+  const cat = document.getElementById("write-cat").value;
+  if(!text) { toast("내용을 입력해주세요!"); return; }
+  const btn = document.querySelector(".btn-submit");
+  btn.textContent = "올리는 중..."; btn.disabled = true;
+  try {
+    await addDoc(collection(db, "posts"), {
+      author: currentUser, content: text, category: cat,
+      likes: [], comments: [], createdAt: serverTimestamp()
+    });
+    document.getElementById("write-text").value = "";
+    document.getElementById("write-form").classList.remove("open");
+    toast("글이 올라갔어요! 🎉");
+  } catch(e) { toast("오류가 발생했어요. 다시 시도해주세요."); console.error(e); }
+  btn.textContent = "올리기 ✈️"; btn.disabled = false;
+};
+
+// ── LOAD POSTS ──
 function loadPosts() {
-  const list = document.getElementById("posts-list");
-  list.innerHTML = '<div class="loading">불러오는 중... ⏳</div>';
+  const area = document.getElementById("posts-area");
+  area.innerHTML = '<div class="loading-txt">불러오는 중... ⏳</div>';
   if(unsubscribe) unsubscribe();
   const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
-  unsubscribe = onSnapshot(q, (snapshot) => {
+  unsubscribe = onSnapshot(q, snap => {
     let posts = [];
-    snapshot.forEach(d => posts.push({ id: d.id, ...d.data() }));
+    snap.forEach(d => posts.push({id:d.id,...d.data()}));
     if(currentCat !== "전체") posts = posts.filter(p => p.category === currentCat);
-    if(posts.length === 0) {
-      list.innerHTML = '<div class="empty-state"><div>📭</div><p>아직 글이 없어요.<br>첫 번째 글을 올려보세요!</p></div>';
+    if(!posts.length) {
+      area.innerHTML = `<div class="empty"><div class="empty-icon">${CAT_ICONS[currentCat]||"📭"}</div><p>아직 글이 없어요.<br>첫 번째 글을 올려보세요!</p></div>`;
       return;
     }
-    list.innerHTML = posts.map(p => renderPost(p)).join("");
-  });
+    area.innerHTML = posts.map(p => renderPost(p)).join("");
+  }, err => { area.innerHTML = '<div class="loading-txt">불러오기 실패. 새로고침해주세요.</div>'; console.error(err); });
 }
 
+// ── RENDER POST ──
 function renderPost(p) {
-  const ac = getAvatarColor(p.author || "?");
-  const ini = getInitial(p.author || "?");
-  const liked = (p.likes || []).includes(currentUser);
-  const likeCount = (p.likes || []).length;
-  const commentCount = (p.comments || []).length;
-  const comments = (p.comments || []).map(c => `
+  const ac = avClass(p.author);
+  const ini = avInit(p.author);
+  const liked = (p.likes||[]).includes(currentUser);
+  const likeN = (p.likes||[]).length;
+  const cmtN = (p.comments||[]).length;
+  const isOwner = p.author === currentUser;
+  const imgHtml = p.imageUrl ? `<img class="post-img" src="${p.imageUrl}" alt="사진" loading="lazy">` : "";
+  const cmts = (p.comments||[]).map((c,i) => `
     <div class="comment-item">
-      <div class="comment-avatar ${getAvatarColor(c.author)}">${getInitial(c.author)}</div>
-      <div class="comment-body">
-        <div class="comment-author">${c.author}</div>
-        <div class="comment-text">${c.text}</div>
-        <div class="comment-time">${timeAgo(c.createdAt)}</div>
+      <div class="c-avatar ${avClass(c.author)}">${avInit(c.author)}</div>
+      <div class="c-body">
+        <div class="c-name">${c.author}</div>
+        <div class="c-text">${c.text}</div>
+        <div class="c-time">${timeAgo(c.ts)}</div>
       </div>
     </div>`).join("");
+  const ownerMenu = isOwner ? `
+    <div class="post-dropdown" id="dd-${p.id}">
+      <button onclick="openEdit('${p.id}')">✏️ 수정</button>
+      <button class="danger" onclick="deletePost('${p.id}')">🗑️ 삭제</button>
+    </div>` : "";
+  const menuBtn = isOwner ? `<button class="post-menu-btn" onclick="toggleMenu('${p.id}')">⋯</button>` : "";
   return `
-  <div class="post-card" id="post-${p.id}">
-    <div class="post-header">
-      <div class="avatar ${ac}">${ini}</div>
-      <div class="post-meta">
-        <div class="post-author">${p.author}<span class="cat-badge">${p.category}</span></div>
-        <div class="post-info">${timeAgo(p.createdAt)}</div>
+  <div class="post-card" id="pc-${p.id}" style="position:relative">
+    <div class="post-head">
+      <div class="post-head-left">
+        <div class="post-avatar ${ac}">${ini}</div>
+        <div>
+          <div class="post-author">${p.author}</div>
+          <div class="post-meta-row">
+            <span class="cat-tag">${CAT_ICONS[p.category]||""} ${p.category}</span>
+            <span class="post-time">${timeAgo(p.createdAt)}</span>
+          </div>
+        </div>
+      </div>
+      ${menuBtn}
+      ${ownerMenu}
+    </div>
+    ${imgHtml}
+    <div class="post-body" id="body-${p.id}">${p.content}</div>
+    <div class="edit-form" id="ef-${p.id}">
+      <textarea class="edit-textarea" id="et-${p.id}">${p.content}</textarea>
+      <div class="edit-actions">
+        <button class="btn-cancel" onclick="closeEdit('${p.id}')">취소</button>
+        <button class="btn-submit" onclick="saveEdit('${p.id}')">저장</button>
       </div>
     </div>
-    <div class="post-body">${p.content}</div>
     <div class="post-actions">
-      <button class="action-btn ${liked ? 'liked' : ''}" onclick="toggleLike('${p.id}')">
-        ${liked ? '❤️' : '🤍'} ${likeCount > 0 ? likeCount : ''} 좋아요
+      <button class="act-btn${liked?' liked':''}" onclick="toggleLike('${p.id}')">
+        ${liked?'❤️':'🤍'} 좋아요${likeN>0?' '+likeN:''}
       </button>
-      <button class="action-btn" onclick="toggleComments('${p.id}')">
-        💬 ${commentCount > 0 ? commentCount : ''} 댓글
+      <button class="act-btn" onclick="toggleCmts('${p.id}')">
+        💬 댓글${cmtN>0?' '+cmtN:''}
       </button>
     </div>
-    <div class="comments-wrap" id="comments-${p.id}">
-      <div id="comment-list-${p.id}">${comments}</div>
-      <div class="comment-input-row">
-        <input class="comment-input" id="cinput-${p.id}" placeholder="댓글 달기..." maxlength="200">
-        <button class="comment-send" onclick="submitComment('${p.id}')">전송</button>
+    <div class="comments-section" id="cs-${p.id}">
+      <div id="clist-${p.id}">${cmts}</div>
+      <div class="c-input-row">
+        <input class="c-input" id="ci-${p.id}" placeholder="댓글 달기..." maxlength="300">
+        <button class="c-send" onclick="sendComment('${p.id}')">전송</button>
       </div>
     </div>
   </div>`;
 }
 
-// SUBMIT POST
-window.submitPost = function() {
-  const text = document.getElementById("write-text").value.trim();
-  const cat = document.getElementById("write-cat").value;
-  if(!text) { showToast("내용을 입력해주세요!"); return; }
-  addDoc(collection(db, "posts"), {
-    author: currentUser,
-    content: text,
-    category: cat,
-    likes: [],
-    comments: [],
-    createdAt: serverTimestamp()
-  }).then(() => {
-    document.getElementById("write-text").value = "";
-    showToast("글이 올라갔어요! 🎉");
-  }).catch(() => showToast("오류가 발생했어요. 다시 시도해주세요."));
+// ── MENU ──
+window.toggleMenu = function(id) {
+  document.querySelectorAll(".post-dropdown").forEach(d => { if(d.id!=="dd-"+id) d.classList.remove("open"); });
+  document.getElementById("dd-"+id).classList.toggle("open");
+};
+document.addEventListener("click", e => {
+  if(!e.target.classList.contains("post-menu-btn")) document.querySelectorAll(".post-dropdown").forEach(d=>d.classList.remove("open"));
+});
+
+// ── LIKE ──
+window.toggleLike = function(id) {
+  const ref = doc(db,"posts",id);
+  const btn = document.querySelector(`#pc-${id} .act-btn`);
+  const liked = btn && btn.classList.contains("liked");
+  updateDoc(ref, {likes: liked ? arrayRemove(currentUser) : arrayUnion(currentUser)});
 };
 
-// LIKE
-window.toggleLike = function(postId) {
-  const ref = doc(db, "posts", postId);
-  const postEl = document.getElementById("post-" + postId);
-  const btn = postEl.querySelector(".action-btn");
-  const liked = btn.classList.contains("liked");
-  updateDoc(ref, { likes: liked ? arrayRemove(currentUser) : arrayUnion(currentUser) });
+// ── COMMENTS ──
+window.toggleCmts = function(id) {
+  const cs = document.getElementById("cs-"+id);
+  cs.classList.toggle("open");
+  if(cs.classList.contains("open")) document.getElementById("ci-"+id).focus();
 };
-
-// COMMENTS
-window.toggleComments = function(postId) {
-  const wrap = document.getElementById("comments-" + postId);
-  wrap.classList.toggle("open");
-  if(wrap.classList.contains("open")) {
-    document.getElementById("cinput-" + postId).focus();
-  }
-};
-
-window.submitComment = function(postId) {
-  const input = document.getElementById("cinput-" + postId);
+window.sendComment = async function(id) {
+  const input = document.getElementById("ci-"+id);
   const text = input.value.trim();
   if(!text) return;
-  const ref = doc(db, "posts", postId);
-  updateDoc(ref, {
-    comments: arrayUnion({
-      author: currentUser,
-      text: text,
-      createdAt: { toMillis: () => Date.now() }
-    })
-  }).then(() => {
-    input.value = "";
-    showToast("댓글이 달렸어요! 💬");
-  });
+  input.value = "";
+  try {
+    await updateDoc(doc(db,"posts",id), {
+      comments: arrayUnion({ author: currentUser, text, ts: {seconds: Math.floor(Date.now()/1000)} })
+    });
+    toast("댓글이 달렸어요! 💬");
+  } catch(e) { toast("댓글 오류. 다시 시도해주세요."); input.value = text; }
 };
-
 document.addEventListener("keydown", e => {
-  if(e.key === "Enter" && e.target.classList.contains("comment-input")) {
-    const postId = e.target.id.replace("cinput-", "");
-    window.submitComment(postId);
+  if(e.key==="Enter" && e.target.classList.contains("c-input")) {
+    const id = e.target.id.replace("ci-","");
+    window.sendComment(id);
   }
 });
+
+// ── EDIT ──
+window.openEdit = function(id) {
+  document.getElementById("body-"+id).style.display = "none";
+  document.getElementById("ef-"+id).classList.add("open");
+  document.getElementById("dd-"+id).classList.remove("open");
+};
+window.closeEdit = function(id) {
+  document.getElementById("body-"+id).style.display = "";
+  document.getElementById("ef-"+id).classList.remove("open");
+};
+window.saveEdit = async function(id) {
+  const text = document.getElementById("et-"+id).value.trim();
+  if(!text) { toast("내용을 입력해주세요!"); return; }
+  try {
+    await updateDoc(doc(db,"posts",id), {content: text});
+    toast("수정됐어요! ✏️");
+    closeEdit(id);
+  } catch(e) { toast("수정 오류. 다시 시도해주세요."); }
+};
+
+// ── DELETE ──
+window.deletePost = async function(id) {
+  if(!confirm("이 글을 삭제할까요?")) return;
+  try {
+    await deleteDoc(doc(db,"posts",id));
+    toast("삭제됐어요! 🗑️");
+  } catch(e) { toast("삭제 오류. 다시 시도해주세요."); }
+};
 </script>
 </body>
 </html>
