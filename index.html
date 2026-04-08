@@ -125,10 +125,10 @@ body { font-family: -apple-system, 'Segoe UI', sans-serif; color: var(--text); b
       <div class="login-logo">🏠</div>
       <div class="login-title">YHDS FAMILY</div>
       <div class="login-sub">우리 가족만의 공간에 오신 걸 환영해요 ❤️</div>
-      <input type="text" id="login-name" placeholder="이름 입력 (예: 아빠, 엄마, 첫째)" maxlength="10">
+      <input type="text" id="login-name" placeholder="이름 입력 (예: 아빠, 엄마, 딸, 아들)" maxlength="10">
       <input type="password" id="login-pw" placeholder="가족 비밀번호">
       <button class="btn-primary" onclick="doLogin()">입장하기</button>
-      <div class="login-hint">💡 가족 비밀번호: <b>yhds2024</b><br>처음 오셨으면 이름을 입력하고 입장하세요!</div>
+      <div class="login-hint">💡 처음 오셨으면 이름을 입력하고 입장하세요!</div>
     </div>
   </div>
 </div>
@@ -212,7 +212,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const FAMILY_PW = "yhds2024";
+const FAMILY_PW = "yhds1029";
 let currentUser = null;
 let currentCat = "전체";
 let unsubscribe = null;
