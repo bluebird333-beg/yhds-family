@@ -58,7 +58,7 @@ body { font-family: -apple-system, 'Segoe UI', sans-serif; color: var(--text); b
 .write-placeholder { flex: 1; font-size: 14px; color: var(--text-muted); cursor: pointer; padding: 8px 14px; background: var(--bg2); border-radius: 20px; border: 1px solid var(--border); }
 .write-form { display: none; padding: 0 16px 14px; }
 .write-form.open { display: block; }
-.write-textarea { width: 100%; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 15px; font-family: inherit; resize: none; outline: none; min-height: 80px; margin-bottom: 10px; color: var(--text); }
+.write-textarea { width: 100%; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 16px; font-family: inherit; resize: none; outline: none; min-height: 80px; margin-bottom: 10px; color: var(--text); -webkit-user-select: text; user-select: text; touch-action: auto; }
 .write-textarea:focus { border-color: var(--primary); }
 .write-form-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .write-cat-sel { font-size: 13px; border: 1px solid var(--border); border-radius: 20px; padding: 7px 12px; color: var(--text); background: var(--bg2); outline: none; font-family: inherit; cursor: pointer; }
@@ -112,7 +112,7 @@ body { font-family: -apple-system, 'Segoe UI', sans-serif; color: var(--text); b
 .c-text { font-size: 14px; line-height: 1.55; word-break: break-word; }
 .c-time { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
 .c-input-row { display: flex; gap: 8px; margin-top: 6px; }
-.c-input { flex: 1; padding: 10px 14px; border: 1px solid var(--border); border-radius: 20px; font-size: 14px; outline: none; font-family: inherit; background: var(--bg); }
+.c-input { flex: 1; padding: 10px 14px; border: 1px solid var(--border); border-radius: 20px; font-size: 16px; outline: none; font-family: inherit; background: var(--bg); -webkit-user-select: text; user-select: text; }
 .c-input:focus { border-color: var(--primary); }
 .c-send { background: var(--primary); color: white; border: none; border-radius: 20px; padding: 10px 16px; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; }
 .c-send:active { opacity: 0.85; }
@@ -180,9 +180,8 @@ body { font-family: -apple-system, 'Segoe UI', sans-serif; color: var(--text); b
         <textarea class="write-textarea" id="write-text" placeholder="내용을 입력하세요..." rows="3"></textarea>
         <div class="write-form-row">
           <select class="write-cat-sel" id="write-cat">
-            <option>소통</option><option>요리</option><option>여행</option>
-            <option>영어</option><option>일정</option><option>기념일</option>
-            <option>챌린지</option><option>독서</option><option>감사일기</option>
+            <option>소통</option><option>일정</option>
+            <option>챌린지</option><option>독서</option>
           </select>
 
         </div>
@@ -219,8 +218,8 @@ const db = getFirestore(app);
 
 
 const FAMILY_PW = "yhds1029";
-const CATS = ["전체","소통","요리","여행","영어","일정","기념일","챌린지","독서","감사일기"];
-const CAT_ICONS = {"전체":"🏠","소통":"💬","요리":"🍳","여행":"✈️","영어":"📖","일정":"📅","기념일":"🎂","챌린지":"🏆","독서":"📚","감사일기":"🙏"};
+const CATS = ["전체","소통","일정","챌린지","독서"];
+const CAT_ICONS = {"전체":"🏠","소통":"💬","일정":"📅","챌린지":"🏆","독서":"📚"};
 
 let currentUser = null;
 let currentCat = "전체";
