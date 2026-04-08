@@ -34,12 +34,14 @@ body { font-family: -apple-system,'Segoe UI',sans-serif; color:var(--text); back
 
 /* TOP NAV */
 .top-nav { background:var(--primary); position:sticky; top:0; z-index:200; }
-.top-nav-inner { max-width:720px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:52px; padding:0 16px; }
-.nav-logo { font-size:17px; font-weight:800; color:white; letter-spacing:1px; }
-.nav-right { display:flex; align-items:center; gap:8px; }
+.top-nav-inner { max-width:720px; margin:0 auto; padding:0 14px; }
+.top-nav-row1 { display:flex; align-items:center; justify-content:space-between; height:46px; }
+.nav-logo { font-size:16px; font-weight:800; color:white; letter-spacing:1px; }
 .nav-user-name { font-size:13px; color:rgba(255,255,255,0.85); }
-.nav-btn { font-size:12px; color:rgba(255,255,255,0.75); background:none; border:1px solid rgba(255,255,255,0.3); border-radius:20px; padding:4px 10px; cursor:pointer; white-space:nowrap; }
-.nav-btn.danger { color:rgba(255,160,160,0.9); border-color:rgba(255,160,160,0.4); }
+.top-nav-row2 { display:flex; align-items:center; gap:6px; padding-bottom:8px; }
+.nav-btn { font-size:11px; color:rgba(255,255,255,0.85); background:rgba(255,255,255,0.15); border:none; border-radius:16px; padding:5px 10px; cursor:pointer; white-space:nowrap; font-family:inherit; }
+.nav-btn:active { opacity:0.75; }
+.nav-btn.danger { background:rgba(255,100,100,0.25); color:rgba(255,200,200,0.95); }
 
 /* SEARCH BAR */
 .search-bar { background:var(--bg); border-bottom:1px solid var(--border); padding:10px 12px; }
@@ -195,9 +197,11 @@ body { font-family: -apple-system,'Segoe UI',sans-serif; color:var(--text); back
 <div id="app" style="display:none">
   <div class="top-nav">
     <div class="top-nav-inner">
-      <div class="nav-logo">🏠 YHDS FAMILY</div>
-      <div class="nav-right">
+      <div class="top-nav-row1">
+        <div class="nav-logo">🏠 YHDS FAMILY</div>
         <span class="nav-user-name" id="nav-uname"></span>
+      </div>
+      <div class="top-nav-row2">
         <button class="nav-btn" onclick="backupPosts()">💾 백업</button>
         <button id="del-all-btn" class="nav-btn danger" onclick="deleteAllPosts()">🗑️ 전체삭제</button>
         <button class="nav-btn" onclick="doLogout()">로그아웃</button>
