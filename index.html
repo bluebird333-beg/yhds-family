@@ -156,7 +156,7 @@ body { font-family: -apple-system,'Segoe UI',sans-serif; color:var(--text); back
 .c-text { font-size:14px; line-height:1.55; word-break:break-word; }
 .c-time { font-size:11px; color:var(--text-muted); margin-top:4px; }
 .c-input-row { display:flex; gap:8px; margin-top:6px; }
-.c-input { flex:1; padding:10px 14px; border:1px solid var(--border); border-radius:20px; font-size:16px; outline:none; font-family:inherit; background:var(--bg); -webkit-user-select:text; user-select:text; }
+.c-input { flex:1; padding:10px 14px; border:1px solid var(--border); border-radius:20px; font-size:16px; outline:none; font-family:inherit; background:var(--bg); -webkit-user-select:text; user-select:text; -webkit-appearance:none; appearance:none; touch-action:auto; }
 .c-input:focus { border-color:var(--primary); }
 .c-send { background:var(--primary); color:white; border:none; border-radius:20px; padding:10px 16px; font-size:13px; font-weight:700; cursor:pointer; }
 .c-send:active { opacity:0.85; }
@@ -641,7 +641,7 @@ function renderPost(p){
     <div class="comments-section" id="cs-${p.id}">
       <div id="clist-${p.id}">${cmts}</div>
       <div class="c-input-row">
-        <input class="c-input" id="ci-${p.id}" placeholder="댓글 달기..." maxlength="300">
+        <input class="c-input" id="ci-${p.id}" placeholder="댓글 달기..." maxlength="300" autocomplete="off" autocorrect="off" autocapitalize="off">
         <button class="c-send" onclick="sendComment('${p.id}')">전송</button>
       </div>
     </div>
@@ -687,7 +687,12 @@ window.toggleLike=function(id){
 window.toggleCmts=function(id){
   const cs=document.getElementById("cs-"+id);
   cs.classList.toggle("open");
-  if(cs.classList.contains("open"))document.getElementById("ci-"+id).focus();
+  if(cs.classList.contains("open")){
+    setTimeout(()=>{
+      const input=document.getElementById("ci-"+id);
+      if(input){ input.removeAttribute("readonly"); input.focus(); }
+    }, 100);
+  }
 };
 window.sendComment=async function(id){
   const input=document.getElementById("ci-"+id);
