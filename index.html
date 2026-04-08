@@ -72,7 +72,7 @@ body { font-family: -apple-system,'Segoe UI',sans-serif; color:var(--text); back
 .write-placeholder { flex:1; font-size:14px; color:var(--text-muted); cursor:pointer; padding:8px 14px; background:var(--bg2); border-radius:20px; border:1px solid var(--border); }
 .write-form { display:none; padding:0 16px 14px; }
 .write-form.open { display:block; }
-.write-textarea { width:100%; border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px 14px; font-size:16px; font-family:inherit; resize:none; outline:none; min-height:80px; margin-bottom:10px; color:var(--text); -webkit-user-select:text; user-select:text; touch-action:auto; }
+.write-textarea { width:100%; border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px 14px; font-size:16px; font-family:inherit; resize:none; outline:none; min-height:80px; margin-bottom:10px; color:var(--text); -webkit-user-select:text; user-select:text; touch-action:auto; -webkit-appearance:none; appearance:none; }
 .write-textarea:focus { border-color:var(--primary); }
 
 /* VOTE IN WRITE */
@@ -248,6 +248,14 @@ body { font-family: -apple-system,'Segoe UI',sans-serif; color:var(--text); back
             <option>소통</option><option>일정</option><option>챌린지</option><option>독서</option>
           </select>
           <button class="vote-toggle" id="vote-toggle-btn" onclick="toggleVoteMode()">📊 투표 추가</button>
+          <label class="vote-toggle" style="cursor:pointer">
+            📷 사진
+            <input type="file" id="img-input" accept="image/*" style="display:none" onchange="previewImg(this)">
+          </label>
+        </div>
+        <div id="img-preview" style="display:none;margin-top:10px;position:relative">
+          <img id="img-preview-img" style="width:100%;max-height:240px;object-fit:cover;border-radius:8px;display:block">
+          <button onclick="removeImg()" style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,0.55);color:white;border:none;border-radius:50%;width:28px;height:28px;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
         </div>
         <div class="write-submit-row">
           <button class="btn-cancel" onclick="closeWriteForm()">취소</button>
@@ -267,6 +275,7 @@ body { font-family: -apple-system,'Segoe UI',sans-serif; color:var(--text); back
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
 import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, orderBy, serverTimestamp, arrayUnion, arrayRemove, getDocs } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-messaging.js";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyABdaB9U87q1wZJYYBsRbSmYHaqrdMhT5w",
@@ -280,7 +289,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const messaging = getMessaging(app);
+const storage = getStorage(app);
 const VAPID_KEY = "BPPwwvwZUxrvQGcmzSZrfR_63VrU-JoIJ6hE3GxoO2fIL33YjVcqIEQFuizl3-879MG8Qrem-fwwc5j1Sl8HNtw";
+let imageFile = null;
 
 const FAMILY_PW = "yhds1029";
 const CATS = ["전체","소통","일정","챌린지","독서"];
@@ -442,25 +453,46 @@ window.removeVoteOption=function(btn){
 // ── WRITE FORM ──
 window.openWriteForm=function(){
   document.getElementById("write-form").classList.add("open");
-  // 현재 선택된 카테고리로 자동 설정 (전체일 땐 소통으로)
   const sel=document.getElementById("write-cat");
   if(currentCat!=="전체") sel.value=currentCat;
-  document.getElementById("write-text").focus();
+  setTimeout(()=>{
+    const ta=document.getElementById("write-text");
+    ta.removeAttribute("readonly");
+    ta.focus();
+  }, 100);
 };
 window.closeWriteForm=function(){
   document.getElementById("write-form").classList.remove("open");
   document.getElementById("write-text").value="";
   if(voteMode)toggleVoteMode();
+  removeImg();
   document.getElementById("vote-options-list").innerHTML=`
     <div class="vote-option-row"><input class="vote-option-input" placeholder="선택지 1"><button class="vote-del-btn" onclick="removeVoteOption(this)">✕</button></div>
     <div class="vote-option-row"><input class="vote-option-input" placeholder="선택지 2"><button class="vote-del-btn" onclick="removeVoteOption(this)">✕</button></div>`;
+};
+
+window.previewImg=function(input){
+  if(!input.files||!input.files[0])return;
+  imageFile=input.files[0];
+  const reader=new FileReader();
+  reader.onload=e=>{
+    document.getElementById("img-preview-img").src=e.target.result;
+    document.getElementById("img-preview").style.display="block";
+  };
+  reader.readAsDataURL(imageFile);
+};
+window.removeImg=function(){
+  imageFile=null;
+  document.getElementById("img-preview").style.display="none";
+  document.getElementById("img-preview-img").src="";
+  document.getElementById("img-input").value="";
 };
 
 // ── SUBMIT POST ──
 window.submitPost=async function(){
   const text=document.getElementById("write-text").value.trim();
   const cat=document.getElementById("write-cat").value;
-  if(!text){toast("내용을 입력해주세요!");return;}
+  if(!text&&!imageFile){toast("내용이나 사진을 추가해주세요!");return;}
   let voteData=null;
   if(voteMode){
     const inputs=[...document.querySelectorAll(".vote-option-input")].map(i=>i.value.trim()).filter(Boolean);
@@ -470,9 +502,15 @@ window.submitPost=async function(){
   const btn=document.querySelector(".btn-submit");
   btn.textContent="올리는 중..."; btn.disabled=true;
   try{
+    let imgUrl=null;
+    if(imageFile){
+      const r=storageRef(storage,`posts/${Date.now()}_${imageFile.name}`);
+      await uploadBytes(r,imageFile);
+      imgUrl=await getDownloadURL(r);
+    }
     await addDoc(collection(db,"posts"),{
       author:currentUser, content:text, category:cat,
-      likes:[], comments:[], pinned:false,
+      imageUrl:imgUrl, likes:[], comments:[], pinned:false,
       vote:voteData, createdAt:serverTimestamp()
     });
     closeWriteForm(); toast("글이 올라갔어요! 🎉");
@@ -622,6 +660,7 @@ function renderPost(p){
       ${menuBtn}${ownerMenu}
     </div>
     <div class="post-body" id="body-${p.id}">${bodyText}</div>
+    ${p.imageUrl?`<img src="${p.imageUrl}" style="width:100%;max-height:360px;object-fit:cover;display:block;" loading="lazy">`:""}
     ${voteHtml}
     <div class="edit-form" id="ef-${p.id}">
       <textarea class="edit-textarea" id="et-${p.id}">${p.content}</textarea>
